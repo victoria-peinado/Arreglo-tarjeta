@@ -1,7 +1,7 @@
 {
     "autoload": {
        "psr-4": {
-          "Arreglo-tarjeta\\": "src"
+          "TrabajoTarjeta\\": "src"
        }
     },
     "require": {
