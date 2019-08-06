@@ -1,0 +1,10 @@
+{
+    "autoload": {
+       "psr-4": {
+          "Arreglo-tarjeta\\": "src"
+       }
+    },
+    "require": {
+        "phpunit/phpunit": "^6"
+    }
+}
