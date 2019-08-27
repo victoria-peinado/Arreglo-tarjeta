@@ -4,16 +4,17 @@ namespace TrabajoTarjeta;
 
 class Tarjeta implements TarjetaInterface
 {
-
-    protected $saldo = 0;
-    protected $plus = 0;
-	protected $pagoplus = 0;
+	use pagarBoleto;
+	
     protected $UltimoValorPagado = null;
     protected $UltimaHora = 0;
     protected $UltimoColectivo;
+	protected $id;
+	protected $tiempo;
+	protected $saldo = 0;
+	protected $plus = 0;
 	protected $pagoplus = 0;
-
-
+	
     public function __construct($id, TiempoInterface $tiempo)
     {
         $this->id = $id; //Guarda el ID
@@ -31,7 +32,7 @@ class Tarjeta implements TarjetaInterface
      * @return bool
      *   Si fue posible realizar la carga.
      */
-    public function recargar($monto)
+    public function recargar($monto)   //INTERFACE
     {
 
         switch ($monto) { //Diferentes montos a recargar
@@ -64,35 +65,9 @@ class Tarjeta implements TarjetaInterface
         // Devuelve true si el monto ingresado es válido
         return true;
     }
-	/**
-     * Funcion para pagar plus en caso de deberlos.
-     */
-    protected function pagarPlus(ColecttivoInterface $linea)
-    {
-        if ($this->plus == 2) { //Si debe 2 plus
-            if ($this->saldo >= ($this->ValorBoleto * 2)) { //Y si le alcanza el saldo para pagarlos
-
-                $this->saldo -= ($this->ValorBoleto * 2); //Se le resta el valor
-                $this->plus = 0; //Se le devuelve los plus
-                $this->pagoplus = 2; //Se almacena que se pagaron 2 plus
-            } 
-			else if ($this->saldo >= $this->ValorBoleto) { // Si solo alcanza para 1 plus
-
-                $this->saldo -= $this->ValorBoleto; //se le descuenta
-                $this->plus = 1; // Se lo devuelve
-                $this->pagoplus = 1; // Se indica que se pago un plus
-            }
-        } else {
-            if ($this->usoPlus == 1 && $this->obtenerSaldo > $this->ValorBoleto) { //si debe 1 plus
-
-                $this->saldo -= $this->ValorBoleto; //Se le descuenta
-                $this->plus = 0; //Se le devuelve
-                $this->pagoplus = 1; // Se indica que se pago un plus
-            }
-        }
-    }
 	
-    public function restarSaldo($linea){
+	
+    public function restarSaldo($linea){ //INTERFACE
 		new pagarBoleto
 	}
     /**
@@ -114,7 +89,7 @@ class Tarjeta implements TarjetaInterface
      *
      * @return float
      */
-    public function obtenerSaldo()
+    public function obtenerSaldo()  //INTERFACE
     {
         return $this->saldo;
     }
