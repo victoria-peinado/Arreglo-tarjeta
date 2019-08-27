@@ -67,9 +67,6 @@ class Tarjeta implements TarjetaInterface
     }
 	
 	
-    public function restarSaldo($linea){ //INTERFACE
-		new pagarBoleto;
-	}
     /**
      * Setea a 0 el "pago plus". Esta funcion se ejecutara cuando se emite el boleto.
      *
