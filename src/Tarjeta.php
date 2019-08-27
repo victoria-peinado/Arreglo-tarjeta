@@ -131,16 +131,4 @@ class Tarjeta implements TarjetaInterface
     {
         return $this->plus; // Devuelve si se utilizo un viaje plus
     }
-    /**
-     * Setea a 0 el "pago plus". Esta funcion se ejecutara cuando se emite el boleto.
-     *
-     * @return int
-     *   La cantidad de plus que pago en la ultiima recarga.
-     */
-    public function obtenerPagoPlus()
-    {
-        $pagoplusaux = $this->pagoplus; // Se almacena en un auxiliar
-        $this->pagoplus = 0; // se Reinicia
-        return $pagoplusaux; // Se devuelve el auxiliar
-    }
 }
