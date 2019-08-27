@@ -4,7 +4,7 @@ namespace TrabajoTarjeta;
 
 class Tarjeta implements TarjetaInterface
 {
-	use pagarBoleto\pagarBoleto;
+	use traitspagarBoleto\pagarBoleto;
 	
     protected $UltimoValorPagado = null;
     protected $UltimaHora = 0;
