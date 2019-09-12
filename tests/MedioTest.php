@@ -38,7 +38,7 @@ class MedioTest extends TestCase
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), false);
         $this->assertTrue($medio->recargar(962.59));
-        $this->assertEquals($medio->obtenerSaldo(), 1159.77);
+        $this->assertEquals($medio->obtenerSaldo(), 1167.17);// no es 1159.77 porque no se resta el plus al recargar
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->restarSaldo("153"), false);
         $this->assertEquals($medio->restarSaldo("153"), false);

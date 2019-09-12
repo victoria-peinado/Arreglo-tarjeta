@@ -69,19 +69,19 @@ class TarjetaTest extends TestCase
     }
 
     /*
-     * Comprueba que se puede recargargar el viaje plus
+     * Comprueba que se puede recargargar el viaje plus despues de restar saldo
      */
     public function testRecargarPlus()
     {
         $tiempo = new Tiempo;
         $tarjeta = new Tarjeta(0, $tiempo);
 
-        $this->assertTrue($tarjeta->recargar(20));
-        $this->assertEquals($tarjeta->restarSaldo("153"), true);
-        $this->assertEquals($tarjeta->restarSaldo("153"), true);
+        $this->assertTrue($tarjeta->recargar(20));//saldo 20
+        $this->assertEquals($tarjeta->restarSaldo("153"), true);//-14.8
+        $this->assertEquals($tarjeta->restarSaldo("153"), true);//debe un plus
         $this->assertEquals($tarjeta->obtenerSaldo(), 5.2);
         $this->assertTrue($tarjeta->recargar(10));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 0.4);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 15.2);//no es 0.4 porque resto el plus cuando pago un voleto
         $this->assertEquals($tarjeta->restarSaldo("153"), true);
         $this->assertEquals($tarjeta->restarSaldo("153"), true);
         $this->assertEquals($tarjeta->obtenerSaldo(), 0.4);
