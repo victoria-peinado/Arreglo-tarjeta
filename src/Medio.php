@@ -20,6 +20,7 @@ class Medio extends Tarjeta
      */
     public function restarSaldo($linea)
     {
+		$this->pagarPlus();//ESTE SERIA EL LUGAR CORRECTO PARA RESTAR LOS PLUS
         if (($this->tiempo->time() - $this->UltimaHora) < 299) {return false;} //Limitacion de 5 minutos
         $ValorARestar = $this->calculaValor($linea); //Llama a la funcion que calcula el valor del boleto a pagar
         if ($this->saldo >= $ValorARestar) { //Se fija si le alcanza el saldo
