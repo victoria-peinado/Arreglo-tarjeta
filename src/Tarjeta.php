@@ -2,7 +2,7 @@
 
 namespace TrabajoTarjeta;
 
-class Tarjeta implements TarjetaInterface extends Recargable
+class Tarjeta extends Recargable implements TarjetaInterface
 {
 
     protected $saldo = 0; #no se si es necesario ya que ya lo va a tener la clase recargable
