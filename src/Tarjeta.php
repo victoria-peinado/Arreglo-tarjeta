@@ -121,7 +121,8 @@ class Tarjeta extends Recargable implements TarjetaInterface
      *   Si fue posible realizar el pago.
      */
     public function restarSaldo($linea)
-    {
+    {	
+		$this->pagarPlus();//ESTE SERIA EL LUGAR CORRECTO PARA RESTAR LOS PLUS
         $ValorARestar = $this->calculaValor($linea); //Calcula el valor de el boleto
         if ($this->saldo >= $ValorARestar) { // Si hay saldo
             $this->saldo -= $ValorARestar; //Se le resta
