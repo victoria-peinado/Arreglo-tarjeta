@@ -4,7 +4,7 @@ namespace TrabajoTarjeta;
 /*/
 Tarjeta completo
 /*/
-class Completo extends Tarjeta extends Recargable
+class Completo extends Tarjeta 
 {
     protected $ValorBoleto = 0; //El boleto vale 0
 

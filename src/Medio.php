@@ -4,7 +4,7 @@ namespace TrabajoTarjeta;
 /*/
 Tarjeta medio
 /*/
-class Medio extends Tarjeta extends Recargable
+class Medio extends Tarjeta
 {
 
     protected $UltimaHora = -300; //Para poder usarlo apenas se compra
