@@ -4,7 +4,7 @@ namespace TrabajoTarjeta;
 /*/
 Tarjeta medio
 /*/
-class Medio extends Tarjeta
+class Medio extends Tarjeta extends Recargable
 {
 
     protected $UltimaHora = -300; //Para poder usarlo apenas se compra
@@ -16,7 +16,7 @@ class Medio extends Tarjeta
      *   La linea en la que esta intentando pagar.
      *
      * @return bool
-     *   Si se pudo realizar el pago.
+     *   Si se pudo realizar el pago. NO ES CORRECTO QUE EXTIENDA TARJETA SI DESPUES VA A SOBRE ESCRIBIR EL METODO
      */
     public function restarSaldo($linea)
     {
