@@ -26,19 +26,19 @@ class MedioTest extends TestCase
         $medio = new Medio(0, $tiempo);
         $this->assertTrue($medio->recargar(20));
         $this->assertEquals($medio->obtenerSaldo(), 20);
-        $this->assertEquals($medio->restarSaldo("153"), true);
+        $this->assertEquals($medio->restarSaldo("153"), true);//valor pasaje 7.4
         $tiempo->avanzar(300);
         $this->assertEquals($medio->obtenerSaldo(), 12.6);
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->obtenerSaldo(), 5.2);
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), true);
+        $this->assertEquals($medio->restarSaldo("153"), true);//debe un medio
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), true);
+        $this->assertEquals($medio->restarSaldo("153"), true);//debe otro medio
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), false);
-        $this->assertTrue($medio->recargar(962.59));
-        $this->assertEquals($medio->obtenerSaldo(), 1167.17);// no es 1159.77 porque no se resta el plus al recargar
+        $this->assertEquals($medio->restarSaldo("153"), false);//no puedo pagar el pasaje
+        $this->assertTrue($medio->recargar(962.59)); //recarga 1184.14
+        $this->assertEquals($medio->obtenerSaldo(), 1174.54);// no es 1159.77 porque no se resta el plus al recargar
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->restarSaldo("153"), false);
         $this->assertEquals($medio->restarSaldo("153"), false);
