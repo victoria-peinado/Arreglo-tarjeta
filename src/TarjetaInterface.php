@@ -23,6 +23,6 @@ interface TarjetaInterface
      */
     public function obtenerSaldo();
 
-    public function restarSaldo($linea);
+    public function restarSaldo($linea);// esto va a ser la clase pagar
 
 }
