@@ -1,7 +1,7 @@
 <?php
 namespace TrabajoTarjeta;
 
-class Recargable 
+class Recargable extends Trasbordo
 {
 	protected $saldo = 0;
        /**
