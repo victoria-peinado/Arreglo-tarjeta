@@ -2,10 +2,10 @@
 
 namespace TrabajoTarjeta;
 
-class Tarjeta implements TarjetaInterface
+class Tarjeta extends Recargable implements TarjetaInterface
 {
 
-    protected $saldo = 0;
+    protected $saldo = 0; #no se si es necesario ya que ya lo va a tener la clase recargable
 
     protected $ValorBoleto = 14.8;
 
@@ -30,7 +30,7 @@ class Tarjeta implements TarjetaInterface
         $this->id = $id; //Guarda el ID
         $this->tiempo = $tiempo; //Guarda la variable tiempo la cual le es inyectada
     }
-
+	
     /**
      * Funcion para recargar la tarjeta.
      *
@@ -42,6 +42,7 @@ class Tarjeta implements TarjetaInterface
      * @return bool
      *   Si fue posible realizar la carga.
      */
+	 /**
     public function recargar($monto)
     {
 
@@ -71,10 +72,10 @@ class Tarjeta implements TarjetaInterface
                 //Devuelve false si el monto ingresado no es válido
                 return false;
         }
-        $this->pagarPlus(); //Ejecuta la funcion parta pagar plus en caso de que los deba
+        $this->pagarPlus(); //Ejecuta la funcion parta pagar plus en caso de que los deba 
         // Devuelve true si el monto ingresado es válido
         return true;
-    }
+    }**/
 
     /**
      * Funcion para pagar plus en caso de deberlos.
@@ -120,7 +121,8 @@ class Tarjeta implements TarjetaInterface
      *   Si fue posible realizar el pago.
      */
     public function restarSaldo($linea)
-    {
+    {	
+		$this->pagarPlus();//ESTE SERIA EL LUGAR CORRECTO PARA RESTAR LOS PLUS
         $ValorARestar = $this->calculaValor($linea); //Calcula el valor de el boleto
         if ($this->saldo >= $ValorARestar) { // Si hay saldo
             $this->saldo -= $ValorARestar; //Se le resta
