@@ -1,8 +1,8 @@
 <?php
 namespace TrabajoTarjeta;
 
-class Trasbordo 
-{   protected $saldo = 0; #no se si es necesario ya que ya lo va a tener la clase recargable
+class Trasbordable extends Recargable
+{ 
     protected $ValorBoleto = 14.8;
     protected $UltimoValorPagado = null;
     protected $UltimaHora = 0;

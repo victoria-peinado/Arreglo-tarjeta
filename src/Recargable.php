@@ -1,9 +1,10 @@
 <?php
 namespace TrabajoTarjeta;
 
-class Recargable extends Trasbordo
+class Recargable 
 {
-	protected $saldo = 0;
+    protected $saldo = 0;
+    
        /**
      * Funcion para recargar la tarjeta.
      *

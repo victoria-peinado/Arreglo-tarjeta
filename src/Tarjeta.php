@@ -2,28 +2,14 @@
 
 namespace TrabajoTarjeta;
 
-class Tarjeta extends Recargable  implements TarjetaInterface
+class Tarjeta extends Trasbordable  implements TarjetaInterface
 {
 
-    protected $saldo = 0; #no se si es necesario ya que ya lo va a tener la clase recargable
-
-    protected $ValorBoleto = 14.8;
-
+ 
     protected $plus = 0;
-
-    protected $UltimoValorPagado = null;
-
-    protected $UltimaHora = 0;
-
-    protected $UltimoColectivo;
-
     protected $pagoplus = 0;
-
-    //protected $Ultimotrasbordo = 1;
-
     protected $id;
 
-    protected $tiempo;
 
     public function __construct($id, TiempoInterface $tiempo)
     {
