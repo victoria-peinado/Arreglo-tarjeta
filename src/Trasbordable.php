@@ -1,14 +1,13 @@
 <?php
 namespace TrabajoTarjeta;
 
-class Trasbordable extends Recargable
+class Trasbordable extends Pagable
 { 
-    protected $ValorBoleto = 14.8;
-    protected $UltimoValorPagado = null;
-    protected $UltimaHora = 0;
-    protected $UltimoColectivo;
+    
+    
+    
     protected $Ultimotrasbordo = 1;
-    protected $tiempo;
+    
     /**
      * Para el caso de la tarjeta ejecuta una funcion que se fija si puede hacer trasbordo.
      *
