@@ -19,6 +19,7 @@ class Medio extends Tarjeta
      *   Si se pudo realizar el pago. 
      * NO ES CORRECTO QUE EXTIENDA TARJETA SI DESPUES VA A SOBRE ESCRIBIR EL METODO
      */
+    """
     public function restarSaldo($linea)
     {
 		$this->pagarPlus();//ESTE SERIA EL LUGAR CORRECTO PARA RESTAR LOS PLUS
@@ -39,7 +40,7 @@ class Medio extends Tarjeta
             return true; //Completa el pago
         }
         return false; //No Se pudo pagar
-    }
+    }"""
 
     /**
      * Devuelve el valor del boleto a pagar, pero antes se fija si puede hacer un trasbordo utilizando al otra funcion.
