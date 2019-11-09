@@ -73,7 +73,7 @@ class BoletoTest extends TestCase
 
         $tarjeta->recargar(30);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y Normal 14.8");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Normal 14.8");
     }
 
     /**
@@ -139,7 +139,7 @@ class BoletoTest extends TestCase
         $tarjeta->recargar(30);
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y Medio 7.4");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Medio 7.4");
     }
     /**
      * Comprueba retorno de datos Medio Universitario
@@ -199,7 +199,7 @@ class BoletoTest extends TestCase
         $tarjeta->recargar(30);
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y Normal 14.8");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Normal 14.8");
     }
 
     /**
