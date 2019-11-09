@@ -39,23 +39,23 @@ class MedioTest extends TestCase
         $tiempo->avanzar(300);
         $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);//debe otro medio
         $tiempo->avanzar(300);
-        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);//no puedo pagar el pasaje
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);//no puedo pagar el pasaje
         $this->assertTrue($medio->recargar(962.59)); //recarga 1184.17
         $this->assertEquals($medio->obtenerSaldo(), 1189.37);// no es 1159.77 porque no se resta el plus al recargar
-        $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
-        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
-        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(300);
         for (($i = 0); $i < 155; ++$i) {
-            $this->assertEquals($medio->restarSaldo("153"), true);
+            $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
             $tiempo->avanzar(300);
         }
-        $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
     }
 
     /**
@@ -68,26 +68,26 @@ class MedioTest extends TestCase
         $pagable = new Pagable();
         $medio = new Medio(0, $tiempo,$recargable);
         $this->assertTrue($medio->recargar(962.59));
-        $this->assertEquals($medio->restarSaldo("153"), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $tiempo->avanzar(50);
         $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(50);
-        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
+        $tiempo->avanzar(50);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
+        $tiempo->avanzar(50);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
+        $tiempo->avanzar(50);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
+        $tiempo->avanzar(50);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(50);
         $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
-        $tiempo->avanzar(50);
-        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
-        $tiempo->avanzar(50);
-        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
-        $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), true);
         $tiempo->avanzar(265);
-        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(584);
-        $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
     }
 
     /*
@@ -97,6 +97,7 @@ class MedioTest extends TestCase
     {
         $tiempo = new TiempoFalso;//$tiempo = new TiempoFalso(0);
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Medio(0, $tiempo,$recargable);
         $tiempo->avanzar(28800);
         $tarjeta->recargar(100);
