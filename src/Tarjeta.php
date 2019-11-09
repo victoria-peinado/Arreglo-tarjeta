@@ -38,7 +38,7 @@ class Tarjeta extends Trasbordable  implements TarjetaInterface
     {
         return $this->saldo;
     }
-    public function restarSaldo($linea,$tarjeta)
+    public function restarSaldo($linea)
     {
         return ($this->pagable->PrestarSaldo($linea,$this) );
     }
