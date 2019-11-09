@@ -16,7 +16,8 @@ class BoletoTest extends TestCase
         $tiempo = new Tiempo();
         $recargable = new Recargable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
-        $colectivo = new Colectivo(133, "RosarioBus", 69);
+        $pagable = new Pagable();
+        $colectivo = new Colectivo(133, "RosarioBus", 69,$pagable);
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerValor(), null);
         $tarjeta->recargar(50);
