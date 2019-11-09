@@ -16,7 +16,8 @@ class Medio extends Tarjeta
      *   La linea en la que esta intentando pagar.
      *
      * @return bool
-     *   Si se pudo realizar el pago. NO ES CORRECTO QUE EXTIENDA TARJETA SI DESPUES VA A SOBRE ESCRIBIR EL METODO
+     *   Si se pudo realizar el pago. 
+     * NO ES CORRECTO QUE EXTIENDA TARJETA SI DESPUES VA A SOBRE ESCRIBIR EL METODO
      */
     public function restarSaldo($linea)
     {

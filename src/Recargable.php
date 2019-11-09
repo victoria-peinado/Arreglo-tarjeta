@@ -3,7 +3,9 @@ namespace TrabajoTarjeta;
 
 class Recargable 
 {
-	protected $saldo = 0;
+    
+    //protected $saldo = 0;
+    
        /**
      * Funcion para recargar la tarjeta.
      *
@@ -15,37 +17,39 @@ class Recargable
      * @return bool
      *   Si fue posible realizar la carga.
      */
-    public function recargar($monto)
+    
+    public function Rrecargar($monto)
     {
+        //$monto_tarjeta = $this->obtenerSaldo();
 
         switch ($monto) { //Diferentes montos a recargar
             case 10:
-                $this->saldo += 10;
+                //$this->cambiarSaldo($monto_tarjeta + 10);
+                $monto= 10;
                 break;
             case 20:
-                $this->saldo += 20;
+                $monto= 20;
                 break;
             case 30:
-                $this->saldo += 30;
+                $monto= 30;
                 break;
             case 50:
-                $this->saldo += 50;
+                 $monto= 50;
                 break;
             case 100:
-                $this->saldo += 100;
+                $monto= 100;
                 break;
             case 510.15:
-                $this->saldo += 592.08;
+                $monto= 592.08;
                 break;
             case 962.59:
-                $this->saldo += 1184.17;
+                $monto= 1184.17;
                 break;
             default:
                 //Devuelve false si el monto ingresado no es válido
-                return false;
+                return 0;
         }
-        //$this->pagarPlus(); //Ejecuta la funcion parta pagar plus en caso de que los deba//NO ES EL LUGAR CORRECTO PARA LLAMAR A ESTA FUNCION
-        // Devuelve true si el monto ingresado es válido
-        return true;
+        return $monto;
+
     }
 }
