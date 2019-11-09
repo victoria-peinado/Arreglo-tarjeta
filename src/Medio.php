@@ -7,7 +7,7 @@ Tarjeta medio
 class Medio extends Tarjeta
 {
 
-    public $UltimaHora = -300; //Para poder usarlo apenas se compra
+    public $UltimaHora = -300; //Para poder usarlo apenas se compra//ANTES ERA PROTECTED
 
     /**
      * Resta el saldo a la tarjeta, pero con una limitacion de no poder pagar un boleto si pasaron menos de 5 minutos.

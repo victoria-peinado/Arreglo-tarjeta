@@ -53,7 +53,7 @@ class Pagable
              $tarjeta->plus++; // Se le resta
              $tarjeta->UltimoValorPagado = 0.0; //Se indica que se pago 0.0
              $tarjeta->UltimoColectivo = $linea;
-             $tarjeta->UltimaHora = $this->tiempo->time(); //Se almacena la hora de la transaccion
+             $tarjeta->UltimaHora = $tarjeta->tiempo->time(); //Se almacena la hora de la transaccion
              return true; // Se finaliza
          }
          return false; // No fue posible pagar
