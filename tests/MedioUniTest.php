@@ -13,18 +13,20 @@ class MedioUniTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $medio = new MedioUniversitario(0, $tiempo,$recargable);
         $this->assertTrue($medio->recargar(100));
         $this->assertEquals($medio->obtenerSaldo(), 100);
+        
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->obtenerSaldo(), 92.6);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->obtenerSaldo(), 85.2);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->obtenerSaldo(), 70.4);
@@ -42,14 +44,14 @@ class MedioUniTest extends TestCase
         $this->assertEquals($medio->obtenerSaldo(), 11.20);
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $this->assertEquals($medio->obtenerSaldo(), 11.20);
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->obtenerSaldo(), 11.20);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
 
     }
 
@@ -60,28 +62,29 @@ class MedioUniTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $medio = new MedioUniversitario(0, $tiempo,$recargable);
         $this->assertTrue($medio->recargar(962.59));
         $this->assertEquals($medio->restarSaldo("153"), true);
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(50);
         $this->assertEquals($medio->restarSaldo("153"), true);
         $tiempo->avanzar(265);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
         $tiempo->avanzar(584);
         $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
     }
 
     /**
@@ -91,6 +94,7 @@ class MedioUniTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $medio = new MedioUniversitario(0, $tiempo,$recargable);
         $this->assertTrue($medio->recargar(100));
         $tiempo->avanzar(27000);
@@ -120,6 +124,7 @@ class MedioUniTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new MedioUniversitario(0, $tiempo,$recargable);
         $tiempo->avanzar(42300);
         $tarjeta->recargar(100);
