@@ -39,7 +39,7 @@ class Pagable
       *   Si fue posible realizar el pago.
       */
      public function PrestarSaldo($linea,$tarjeta)
-     {	echo 0;
+     {	echo 3;
          $this->pagarPlus();//ESTE SERIA EL LUGAR CORRECTO PARA RESTAR LOS PLUS
          $ValorARestar = $tarjeta->calculaValor($linea); //Calcula el valor de el boleto
          if ($tarjeta->saldo >= $ValorARestar) { // Si hay saldo
