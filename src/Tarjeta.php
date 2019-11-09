@@ -72,7 +72,7 @@ class Tarjeta extends Trasbordable  implements TarjetaInterface
      * @return float
      *   El valor del pasaje a pagar.
      */
-     protected function calculaValor($linea)
+     public function calculaValor($linea)
      {
          return ($this->puedeTrasbordo($linea, $this->ValorBoleto));
      }
