@@ -14,8 +14,7 @@ class ColectivoTest extends TestCase
     {
         $tiempo = new Tiempo;
         $recargable = new Recargable();
-        $pagable = new Pagable();
-        $tarjeta = new Tarjeta(0, $tiempo,$recargable,$pagable);
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tarjeta->recargar(510.15);
         $colectivo = new Colectivo(122, "Semtur", 37);
         /*

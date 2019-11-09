@@ -15,6 +15,7 @@ class Colectivo implements ColectivoInterface
         $this->linea = $linea; //asignacion de los parametros
         $this->empresa = $empresa;
         $this->numero = $numero;
+        $this->pagable = $pagable;
     }
 
     /**
