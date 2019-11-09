@@ -19,6 +19,6 @@ class CompletoTest extends TestCase
             $this->assertEquals($pagable->PrestarSaldo("153",$completo), true);
            // $this->assertEquals($completo->restarSaldo("153"), true);
         }
-        $this->assertEquals($completo->restarSaldo("153"), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$completo), true);
     }
 }

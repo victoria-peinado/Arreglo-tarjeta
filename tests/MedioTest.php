@@ -95,7 +95,7 @@ class MedioTest extends TestCase
     {
         $tiempo = new TiempoFalso;//$tiempo = new TiempoFalso(0);
         $recargable = new Recargable();
-        $medio = new Medio(0, $tiempo,$recargable);
+        $tarjeta = new Medio(0, $tiempo,$recargable);
         $tiempo->avanzar(28800);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);

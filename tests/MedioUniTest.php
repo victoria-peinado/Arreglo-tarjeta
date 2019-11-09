@@ -120,7 +120,7 @@ class MedioUniTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
-        $trjeta = new MedioUniversitario(0, $tiempo,$recargable);
+        $tarjeta = new MedioUniversitario(0, $tiempo,$recargable);
         $tiempo->avanzar(42300);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
