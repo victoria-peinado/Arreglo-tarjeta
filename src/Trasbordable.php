@@ -1,7 +1,7 @@
 <?php
 namespace TrabajoTarjeta;
 
-class Trasbordable extends Tarjeta
+class Trasbordable
 { 
     
     
