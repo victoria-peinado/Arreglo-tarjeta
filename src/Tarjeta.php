@@ -43,7 +43,7 @@ class Tarjeta extends Trasbordable  implements TarjetaInterface
     {   echo $linea;
         echo $this->saldo;
         $tarjeta =$this
-        echo ($this->pagable->PrestarSaldo($linea,$tarjeta) );
+        if (($this->pagable->PrestarSaldo($linea,$tarjeta) )== true){echo 1;}
     }
 
     /**
