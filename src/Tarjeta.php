@@ -40,7 +40,7 @@ class Tarjeta extends Trasbordable  implements TarjetaInterface
     }
     public function restarSaldo($linea)
     {
-        return ($this->pagable->PrestarSaldo($linea,$this);
+        return ($this->pagable->PrestarSaldo($linea,$this));
     }
 
     /**
@@ -107,36 +107,7 @@ class Tarjeta extends Trasbordable  implements TarjetaInterface
     {
          return $this->plus; // Devuelve si se utilizo un viaje plus
     }
-    /**
-    * Devuelve el ultimo valor pagado.
-    *
-    * @return float
-    */
-     public function valorPagado()
-    {
-        return $this->UltimoValorPagado; // Devuelve el ultimo valor que se pago
-    }
-        
-    /**
-     * Devuelve la ultima hora en la que se uso la tarjeta.
-     *
-     * @return int
-     */
-    public function ultimaHoraUsada()
-     {
-         return $this->UltimaHora; // Devuelve la ultima hora a la que se pago
-     }
-        
-    /**
-     * Devuelve si se utilizo un viaje plus.
-     *
-     * @return int
-     */
-    public function usoPlus()
-    {
-         return $this->plus; // Devuelve si se utilizo un viaje plus
-    }
-   
+    
     /**
     * Setea a 0 el "pago plus". Esta funcion se ejecutara cuando se emite el boleto.
     *
