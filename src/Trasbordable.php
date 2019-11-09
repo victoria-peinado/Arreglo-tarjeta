@@ -1,26 +1,14 @@
 <?php
 namespace TrabajoTarjeta;
 
-class Trasbordable extends Pagable
+class Trasbordable extends Tarjeta
 { 
     
     
     
     protected $Ultimotrasbordo = 1;
     
-    /**
-     * Para el caso de la tarjeta ejecuta una funcion que se fija si puede hacer trasbordo.
-     *
-     * @param string $linea
-     *   La linea de colectivo en la que se esta pagando, se utiliza para ver si hizo trasbordo.
-     *
-     * @return float
-     *   El valor del pasaje a pagar.
-     */
-     protected function calculaValor($linea)
-     {
-         return ($this->puedeTrasbordo($linea, $this->ValorBoleto));
-     }
+ 
  
      /**
       * Funcion para ver si dispone del trasbordo.

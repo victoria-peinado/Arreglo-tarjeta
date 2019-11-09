@@ -13,7 +13,8 @@ class MedioTest extends TestCase
     {
         $tiempo = new Tiempo;
         $recargable = new Recargable();
-        $medio = new Medio(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $medio = new Medio(0, $tiempo,$recargable,$pagable);
         $this->assertFalse($medio->recargar(15));
         $this->assertEquals($medio->obtenerSaldo(), 0);
     }
@@ -25,7 +26,8 @@ class MedioTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
-        $medio = new Medio(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $medio = new Medio(0, $tiempo,$recargable,$pagable);
         $this->assertTrue($medio->recargar(20));
         $this->assertEquals($medio->obtenerSaldo(), 20);
         $this->assertEquals($medio->restarSaldo("153"), true);//valor pasaje 7.4
@@ -64,7 +66,8 @@ class MedioTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
-        $medio = new Medio(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $medio = new Medio(0, $tiempo,$recargable,$pagable);
         $this->assertTrue($medio->recargar(962.59));
         $this->assertEquals($medio->restarSaldo("153"), true);
         $tiempo->avanzar(300);
@@ -95,7 +98,8 @@ class MedioTest extends TestCase
     {
         $tiempo = new TiempoFalso;//$tiempo = new TiempoFalso(0);
         $recargable = new Recargable();
-        $tarjeta = new Medio(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $medio = new Medio(0, $tiempo,$recargable,$pagable);
         $tiempo->avanzar(28800);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);

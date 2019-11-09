@@ -15,7 +15,8 @@ class BoletoTest extends TestCase
 
         $tiempo = new Tiempo();
         $recargable = new Recargable();
-        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable,$pagable);
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerValor(), null);
@@ -33,7 +34,8 @@ class BoletoTest extends TestCase
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
         $recargable = new Recargable();
-        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable,$pagable);
         $tarjeta->recargar(50);
         $tiempo->avanzar(250);
         $boleto = $colectivo->pagarCon($tarjeta);
@@ -83,7 +85,8 @@ class BoletoTest extends TestCase
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
         $recargable = new Recargable();
-        $tarjeta = new Medio(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable,$pagable);
         $tarjeta->recargar(30);
         $tiempo->avanzar(250);
         $boleto = $colectivo->pagarCon($tarjeta);
@@ -148,7 +151,8 @@ class BoletoTest extends TestCase
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
         $recargable = new Recargable();
-        $tarjeta = new \TrabajoTarjeta\MedioUniversitario(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $tarjeta = new \TrabajoTarjeta\MedioUniversitario(0, $tiempo,$recargable,$pagable);
         $tarjeta->recargar(30);
         $tiempo->avanzar(250);
         $boleto = $colectivo->pagarCon($tarjeta);
@@ -209,7 +213,8 @@ class BoletoTest extends TestCase
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
         $recargable = new Recargable();
-        $tarjeta = new \TrabajoTarjeta\Completo(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $tarjeta = new \TrabajoTarjeta\Completo(0, $tiempo,$recargable,$pagable);
 
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerColectivo(), $colectivo);
@@ -244,7 +249,8 @@ class BoletoTest extends TestCase
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
         $recargable = new Recargable();
-        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable,$pagable);
         $tarjeta->recargar(20);
         $tiempo->avanzar(250);
         $colectivo->pagarCon($tarjeta);
