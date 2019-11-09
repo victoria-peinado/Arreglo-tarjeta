@@ -6,7 +6,7 @@ Tarjeta completo
 /*/
 class Completo extends Tarjeta 
 {
-    protected $ValorBoleto = 0; //El boleto vale 0
+    public $ValorBoleto = 0; //El boleto vale 0
 
     /**
      * Devuelve el valor de boleto siendo este 0 para la franquicia completa.
