@@ -39,8 +39,12 @@ class Pagable
       *   Si fue posible realizar el pago.
       */
      public function PrestarSaldo($linea,$tarjeta)
-     {	echo 3;
+     {	
          $this->pagarPlus();//ESTE SERIA EL LUGAR CORRECTO PARA RESTAR LOS PLUS
+         if(($tarjeta instanceof Medio)&&(($this->tiempo->time() - $this->UltimaHora) < 299))
+         {
+             return false;
+        }
          $ValorARestar = $tarjeta->calculaValor($linea); //Calcula el valor de el boleto
          if ($tarjeta->saldo >= $ValorARestar) { // Si hay saldo
              $tarjeta->saldo -= $ValorARestar; //Se le resta

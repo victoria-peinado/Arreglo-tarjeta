@@ -78,7 +78,7 @@
 
 
      esto es del medio
-     """
+     
      public function restarSaldo($linea)
      {
          $this->pagarPlus();//ESTE SERIA EL LUGAR CORRECTO PARA RESTAR LOS PLUS
@@ -99,4 +99,4 @@
              return true; //Completa el pago
          }
          return false; //No Se pudo pagar
-     }"""
+     }

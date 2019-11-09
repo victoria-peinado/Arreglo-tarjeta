@@ -69,7 +69,7 @@ class BoletoTest extends TestCase
 
         $tarjeta->recargar(30);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");#error
 
         $tarjeta->recargar(30);
         $boleto = $colectivo->pagarCon($tarjeta);
@@ -100,7 +100,7 @@ class BoletoTest extends TestCase
 
         $this->assertEquals($boleto->obtenerIdTarjeta(), 0);
 
-        $this->assertEquals($boleto->obtenerSaldo(), 22.6);
+        $this->assertEquals($boleto->obtenerSaldo(), 22.6); #error
 
         $this->assertEquals($boleto->obtenerAbonado(), 7.4);
 
@@ -194,7 +194,7 @@ class BoletoTest extends TestCase
         $tarjeta->recargar(30);
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0"); #error
 
         $tarjeta->recargar(30);
         $tiempo->avanzar(300);
@@ -277,6 +277,6 @@ class BoletoTest extends TestCase
         $tarjeta->recargar(10);
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerSaldo(), 0.4);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y UltimoPlus 0.0");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y UltimoPlus 0.0"); #error
     }
 }
