@@ -59,7 +59,9 @@ class Colectivo implements ColectivoInterface
      */
     public function pagarCon(TarjetaInterface $tarjeta)
     {
-        if (!($tarjeta->restarSaldo($this->linea))) { //Si la funcion para restar el saldo retorna false
+        //if (!($tarjeta->restarSaldo($this->linea))) { //Si la funcion para restar el saldo retorna false
+        //    return false; //Falla el pago
+        if (!($this->pagable->PrestarSaldo($this->linea,$tarjeta)) { //Si la funcion para restar el saldo retorna false
             return false; //Falla el pago
         }
         return (new Boleto($this, $tarjeta)); //Crea un boleto con la informacion
