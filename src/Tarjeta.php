@@ -6,7 +6,7 @@ class Tarjeta extends Trasbordable  implements TarjetaInterface
 {   public $saldo = 0;
     protected $id;
     protected $recargable;
-    public $ValorBoleto = 14.8;
+    public $ValorBoleto = VariablesConstantes::precioCompleto;
     public $plus = 0;
     public $pagoplus = 0;
     public $tiempo;

@@ -6,6 +6,8 @@ use PHPUnit\Framework\TestCase;
 
 class TarjetaTest extends TestCase
 {
+	public $ValorBoleto = VariablesConstantes::precioCompleto;
+	public $cargasPosibles = VariablesConstantes::cargasPosibles;
 
     /**
      * Comprueba que la tarjeta aumenta su saldo cuando se carga saldo válido.
@@ -16,27 +18,12 @@ class TarjetaTest extends TestCase
         $recargable = new Recargable();
         $pagable = new Pagable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
-
-        $this->assertTrue($tarjeta->recargar(10));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 10);
-
-        $this->assertTrue($tarjeta->recargar(20));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 30);
-
-        $this->assertTrue($tarjeta->recargar(510.15));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 622.08);
-
-        $this->assertTrue($tarjeta->recargar(962.59));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 1806.25);
-
-        $this->assertTrue($tarjeta->recargar(30));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 1836.25);
-
-        $this->assertTrue($tarjeta->recargar(50));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 1886.25);
-
-        $this->assertTrue($tarjeta->recargar(100));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 1986.25);
+		$saldoActual=0;
+		for($c=0,$end=sizeof($cargasPosibles)-1;$c<$end;c++)
+        $this->assertTrue($tarjeta->recargar($cargasPosibles[c][0]);
+		$saldoActual=$saldoActual+$cargasPosibles[c][1];
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoActual);
+		}
     }
 
     /**

@@ -6,7 +6,7 @@ Tarjeta medio
 /*/
 class Medio extends Tarjeta
 {
-
+	public $ValorBoleto = VariablesConstantes::precioMedioBoletoEstudiantil;
     public $UltimaHora = -300; //Para poder usarlo apenas se compra//ANTES ERA PROTECTED
 
     /**
@@ -32,6 +32,6 @@ class Medio extends Tarjeta
      */
     public function calculaValor($linea)
     {
-        return ($this->puedeTrasbordo($linea, ($this->ValorBoleto / 2)));
+        return ($this->puedeTrasbordo($linea, ($this->ValorBoleto)));
     }
 }
