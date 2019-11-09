@@ -19,7 +19,6 @@ class Tarjeta extends Trasbordable  implements TarjetaInterface
         $this->id = $id; //Guarda el ID
         $this->tiempo = $tiempo; //Guarda la variable tiempo la cual le es inyectada
         $this->recargable = $recargable;
-        
     }
     public function recargar ($monto)
     {
@@ -38,9 +37,9 @@ class Tarjeta extends Trasbordable  implements TarjetaInterface
     {
         return $this->saldo;
     }
-    public function restarSaldo($monto)
+    public function restarSaldo($linea)
     {
-        $this->saldo -= $monto;
+        return ($this->pagable->PrestarSaldo($linea,$this) );
     }
 
     /**
