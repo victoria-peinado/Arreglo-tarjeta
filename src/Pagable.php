@@ -41,7 +41,7 @@ class Pagable
      public function PrestarSaldo($linea,$tarjeta)
      {	
          $this->pagarPlus();//ESTE SERIA EL LUGAR CORRECTO PARA RESTAR LOS PLUS
-         if(($tarjeta instanceof Medio)&&(($this->tiempo->time() - $this->UltimaHora) < 299))
+         if(($tarjeta instanceof Medio)&&(($tarjeta->tiempo->time() - $tarjeta->UltimaHora) < 299))
          {
              return false;
         }
