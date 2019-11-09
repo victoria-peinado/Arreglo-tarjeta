@@ -50,7 +50,7 @@ class Medio extends Tarjeta
      * @return float
      *   El valor del boleto a pagar.
      */
-    protected function calculaValor($linea)
+    public function calculaValor($linea)
     {
         return ($this->puedeTrasbordo($linea, ($this->ValorBoleto / 2)));
     }
