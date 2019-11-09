@@ -66,10 +66,10 @@ class BoletoTest extends TestCase
         $this->assertEquals($boleto->obtenerDescripcion(), "ViajePlus 0.0");
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerDescripcion(), "UltimoPlus 0.0");
-        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");#error
+
         $tarjeta->recargar(30);
         $boleto = $colectivo->pagarCon($tarjeta);
-        
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");#error
 
         $tarjeta->recargar(30);
         $boleto = $colectivo->pagarCon($tarjeta);
@@ -84,7 +84,7 @@ class BoletoTest extends TestCase
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
         $recargable = new Recargable();
-        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $tarjeta = new Medio(0, $tiempo,$recargable);
         $tarjeta->recargar(30);
         $tiempo->avanzar(250);
         $boleto = $colectivo->pagarCon($tarjeta);
