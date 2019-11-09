@@ -12,7 +12,8 @@ class CompletoTest extends TestCase
     public function testRestarBoletos()
     {
         $tiempo = new Tiempo;
-        $completo = new Completo(0, $tiempo);
+        $recargable = new Recargable();
+        $completo = new Completo(0, $tiempo,$recargable);
         for (($i = 0); $i < 160; ++$i) {
             $this->assertEquals($completo->restarSaldo("153"), true);
         }

@@ -13,7 +13,8 @@ class ColectivoTest extends TestCase
     public function testPagarColectivo()
     {
         $tiempo = new Tiempo;
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $recargable = new Recargable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tarjeta->recargar(510.15);
         $colectivo = new Colectivo(122, "Semtur", 37);
         /*
@@ -36,7 +37,8 @@ class ColectivoTest extends TestCase
     {
 
         $tiempo = new Tiempo;
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $recargable = new Recargable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $colectivo = new Colectivo(141, "Semtur", 37);
         /*
         Probamos la realizacion de una viaje sin saldo
