@@ -278,6 +278,7 @@ class BoletoTest extends TestCase
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerSaldo(), 0.4);
         $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y UltimoPlus 0.0");
-		*/
+		
     }
+	*/
 }
