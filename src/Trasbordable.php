@@ -43,12 +43,12 @@ class Trasbordable extends Pagable
          if ($this->dependeHora()) {
              if (($this->tiempo->time() - $this->UltimaHora) < 3600) {
                  $this->Ultimotrasbordo = 1;
-                 return ($ValorBoleto * 0.33);
+                 return ($ValorBoleto * 0);	//Gratuito 
              }
          } else {
-             if (($this->tiempo->time() - $this->UltimaHora) < 5400) {
+             if (($this->tiempo->time() - $this->UltimaHora) < 7200) {
                  $this->Ultimotrasbordo = 1;
-                 return ($ValorBoleto * 0.33);
+                 return ($ValorBoleto * 0);	//Gratuito 
              }
          }
          $this->Ultimotrasbordo = 0;
@@ -59,7 +59,7 @@ class Trasbordable extends Pagable
       * Dependiendo de la hora y el dia que sea puede haber un maximo de tiempo de 60 o 90 minutos.
       *
       * @return bool
-      *   True si son 60 o false si son 90.
+      *   True si son 60 o false si son 120.
       */
      protected function dependeHora()
      {
