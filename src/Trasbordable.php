@@ -63,17 +63,17 @@ class Trasbordable extends Pagable
       */
      protected function dependeHora()
      {
-         if ($this->tiempo->esFeriado() || date('N', $this->tiempo->time()) == 7){	//Si es un domingo, el transbordo es de 2 hora
+         if ($this->tiempo->esFeriado() || date('N', $this->tiempo->time()) == 7){	//Si es un domingo, el transbordo es de 2 horas
              return false;
          }
          if (date('N', $this->tiempo->time()) == 6){
-             if (date('G', $this->tiempo->time()) > 6 && date('G', $this->tiempo->time()) < 14){	//Si es un sabado entre las 6 y las 14 el transbordo es de 2 horas
+             if (date('G', $this->tiempo->time()) > 6 && date('G', $this->tiempo->time()) < 14){	//Si es un sabado entre las 6 y las 14 el transbordo es de 1 hora
                  return true;
              } else {
                  return false;
              }
          } else {
-             if (date('G', $this->tiempo->time()) > 6 && date('G', $this->tiempo->time()) < 20){	//Durante el resto de los dias, si es entre las 6 y las 20 el transbordo es de 2 horas
+             if (date('G', $this->tiempo->time()) > 6 && date('G', $this->tiempo->time()) < 20){	//Durante el resto de los dias, si es entre las 6 y las 20 el transbordo es de 1 hora
                  return true;
              } else {
                  return false;

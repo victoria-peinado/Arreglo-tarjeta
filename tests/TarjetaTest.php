@@ -95,92 +95,153 @@ class TarjetaTest extends TestCase
     Pruebo muchas cosas de trasbordo, con respecto al funcionamiento con el tiempo
      */
     public function testTrasbordo()
-    {
+    {	
+        $colectivo1 = new Colectivo(122, "Semtur", 37);
+        $colectivo2 = new Colectivo(134, "RosarioBus", 52);
+
+		//Pruebo pagar un trasbordo un dia feriado con 90 minutos de espera y el texto del boleto
         $tiempo = new TiempoFalso(0);
-        $tiempo->agregarFeriado("01-06");
+        $recargable = new Recargable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $tarjeta->recargar(100);
+        $tarjeta->recargar(100);
+		$saldoEsperado =200;
+
+        $boleto = $colectivo1->pagarCon($tarjeta);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals(date('G', $tiempo->time()), '0');
+        $this->assertEquals(date('d-m', $tiempo->time()), "01-01");
+        $this->assertEquals($boleto->obtenerFecha(), "01/01/1970 00:00:00");
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+        $tiempo->avanzar(4200);	//"01/01/1970 01:10:00"
+
+        $boleto2 = $colectivo2->pagarCon($tarjeta);
+		$saldoEsperado=$saldoEsperado-(32.50*0);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
+        //Pruebo pagar un trasbordo en un mismo colectivo
+        $tiempo = new TiempoFalso(0);
+        $recargable = new Recargable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $tarjeta->recargar(100);
+        $tarjeta->recargar(100);
+		$saldoEsperado =200;
+
+        $colectivo1->pagarCon($tarjeta);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
+        $tiempo->avanzar(2300);			//"01/01/1970 00:38:00"
+        $colectivo1->pagarCon($tarjeta);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
+        //Pruebo pagar un trasbordo un dia feriado cuando ya pasaron los 120 minutos
+        $tiempo = new TiempoFalso(0);
         $recargable = new Recargable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tiempo->avanzar(28800);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
-        $colectivo1 = new Colectivo(122, "Semtur", 37);
-        $colectivo2 = new Colectivo(134, "RosarioBus", 52);
-
-        //Pruebo pagar un trasbordo un dia feriado con 90 minutos de espera y el texto del boleto
-        $boleto = $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals(date('N', $tiempo->time()), '4');
-        $this->assertEquals(date('G', $tiempo->time()), '8');
+		$saldoEsperado =200;
+		
         $this->assertEquals(date('d-m', $tiempo->time()), "01-01");
-        $this->assertEquals($boleto->obtenerFecha(), "01/01/1970 08:00:00");
-        $this->assertEquals($tarjeta->obtenerSaldo(), 167.5);
-        $tiempo->avanzar(4200);
-        $boleto2 = $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($boleto2->obtenerDescripcion(), "Trasbordo Normal 10.725");
-        $this->assertEquals($tarjeta->obtenerSaldo(), 156.775);
 
-        //Pruebo pagar un trasbordo en un mismo colectivo
-        $tiempo->avanzar(7200);
         $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 124.275);
-        $tiempo->avanzar(2300);
-        $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 91.775);
-
-        //Pruebo pagar un trasbordo un dia feriado cuando ya pasaron los 90 minutos
-        $tiempo->avanzar(7200);
-        $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 59.275);
-        $tiempo->avanzar(5500);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+		
+        $tiempo->avanzar(7300);	//"01/01/1970 02:01:00"
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 26.775);
-        //Recargo porque tenemos poco saldo
-        $tarjeta->recargar(100);
-        $tarjeta->recargar(100);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
         //Prueba pagar trasbordo un dia normal antes de los 60 minutos
-        $tiempo->avanzar(60800);
-        $this->assertEquals(date('d-m', $tiempo->time()), "02-01");
+        $tiempo = new TiempoFalso(0);
+        $recargable = new Recargable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $tarjeta->recargar(100);
+        $tarjeta->recargar(100);
+		$saldoEsperado =200;
+		
+        $tiempo->avanzar(86400);	//Avanzar 1 dia //"01/02/1970 00:00:00"
+        $this->assertEquals(date('d-m', $tiempo->time()), "01-02");
+
         $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 194.275);
-        $tiempo->avanzar(3550);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
+        $tiempo->avanzar(3550);		//"01/02/1970 00:59:00"
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 183.55);
+		$saldoEsperado=$saldoEsperado-(32.50*0.33);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 
         //Prueba pagar trasbordo un dia normal despues de los 60 minutos
-        $tiempo->avanzar(7200);
+        $tiempo = new TiempoFalso(0);
+        $recargable = new Recargable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $tarjeta->recargar(100);
+        $tarjeta->recargar(100);
+		$saldoEsperado =200;
+		
+        $tiempo->avanzar(86400);	//Avanzar 1 dia		//"01/02/1970 00:00:00"
+        $tiempo->avanzar(28800);	//Avanzar 8 horas	//"01/02/1970 08:00:00"
+        $this->assertEquals(date('d-m', $tiempo->time()), "01-02");
+
         $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 151.05);
-        $tiempo->avanzar(5300);
-        $this->assertEquals(date('N', $tiempo->time()), 5);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
+        $tiempo->avanzar(3650);		//Avanzar 59 minutos	//"01/02/1970 08:59:00"
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 118.55);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 
         //Prueba pagar trasbordo un sabado a la mañana despues de los 60 minutos
-        $tiempo->avanzar(64800);
-        $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 86.05);
-        $tiempo->avanzar(4100);
-        $this->assertEquals(date('N', $tiempo->time()), 6);
-        $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 53.55);
+        $tiempo = new TiempoFalso(0);
+        $recargable = new Recargable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $tarjeta->recargar(100);
+        $tarjeta->recargar(100);
+		$saldoEsperado =200;
+		
+        $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/02/1970 00:00:00"
+        $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/03/1970 00:00:00"
 
-        //Prueba pagar trasbordo un sabado a la mañana despues de los 60 minutos
-        $tiempo->avanzar(28800);
-        $this->assertTrue($tarjeta->recargar(100));
-        $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 121.05);
-        $tiempo->avanzar(5200);
+        $this->assertEquals(date('d-m', $tiempo->time()), "01-03");	//El 03/01/1970 cae un sabado
         $this->assertEquals(date('N', $tiempo->time()), 6);
+
+        $colectivo1->pagarCon($tarjeta);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
+        $tiempo->avanzar(7100);
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 110.325);
+		$saldoEsperado=$saldoEsperado-(32.50*0);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 
         //Prueba pagar trasbordo un domingo despues de los 60 minutos
-        $tiempo->avanzar(57600);
-        $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 77.825);
-        $tiempo->avanzar(5200);
+        $tiempo = new TiempoFalso(0);
+        $recargable = new Recargable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $tarjeta->recargar(100);
+        $tarjeta->recargar(100);
+		$saldoEsperado =200;
+		
+        $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/02/1970 00:00:00"
+        $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/03/1970 00:00:00"
+        $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/04/1970 00:00:00"
+        $this->assertEquals(date('d-m', $tiempo->time()), "01-03");	//El 04/01/1970 cae un domingo
         $this->assertEquals(date('N', $tiempo->time()), 7);
+
+        $colectivo1->pagarCon($tarjeta);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
+        $tiempo->avanzar(7100);		//Avanzar 1 hora y 59 minutos	//"01/02/1970 01:59:00"
+		$saldoEsperado=$saldoEsperado-(32.50*0);
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 67.1);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
     }
 
     /*
@@ -195,15 +256,22 @@ class TarjetaTest extends TestCase
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
+		$saldoEsperado =200;
         $colectivo1 = new Colectivo(122, "Semtur", 37);
         $colectivo2 = new Colectivo(134, "RosarioBus", 52);
         $colectivo3 = new Colectivo(155, "RosarioBus", 33);
+
         $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 167.5);
+		$saldoEsperado=$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 156.775);
+		$saldoEsperado=$saldoEsperado-(32.50*0);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+
         $colectivo3->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 124.275);
+		$saldoEsperado=$saldoEsperado-(32.50*0);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
     }
 
     /*
@@ -218,11 +286,16 @@ class TarjetaTest extends TestCase
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
+		$saldoEsperado =200;
         $colectivo1 = new Colectivo(122, "Semtur", 37);
         $colectivo2 = new Colectivo(134, "RosarioBus", 52);
+
         $colectivo1->pagarCon($tarjeta);
+		$saldoEsperado=$saldoEsperado-32.50;
         $this->assertEquals($tarjeta->obtenerSaldo(), 167.5);
+
         $colectivo2->pagarCon($tarjeta);
+		$saldoEsperado=$saldoEsperado-(32.50*0);
         $this->assertEquals($tarjeta->obtenerSaldo(), 156.775);
 
     }
