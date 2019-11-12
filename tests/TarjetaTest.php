@@ -79,15 +79,15 @@ class TarjetaTest extends TestCase
         $recargable = new Recargable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
 
-        $this->assertTrue($tarjeta->recargar(20));//saldo 20
+        $this->assertTrue($tarjeta->recargar(50));//saldo 20
         $this->assertEquals($tarjeta->restarSaldo("153"), true);//-14.8
         $this->assertEquals($tarjeta->restarSaldo("153"), true);//debe un plus
-        $this->assertEquals($tarjeta->obtenerSaldo(), 5.2);
-        $this->assertTrue($tarjeta->recargar(10));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 15.2);//no es 0.4 porque resto el plus cuando pago un voleto
+        $this->assertEquals($tarjeta->obtenerSaldo(), 17.5);
+        $this->assertTrue($tarjeta->recargar(20));
+        $this->assertEquals($tarjeta->obtenerSaldo(), 37.5);//no es 0.4 porque resto el plus cuando pago un voleto
         $this->assertEquals($tarjeta->restarSaldo("153"), true);
         $this->assertEquals($tarjeta->restarSaldo("153"), true);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 0.4);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 5);
         $this->assertEquals($tarjeta->restarSaldo("153"), false);
     }
 
