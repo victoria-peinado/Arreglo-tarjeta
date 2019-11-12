@@ -186,7 +186,7 @@ class TarjetaTest extends TestCase
 		
         $tiempo->avanzar(86400);	//Avanzar 1 dia		//"01/02/1970 00:00:00"
         $tiempo->avanzar(28800);	//Avanzar 8 horas	//"01/02/1970 08:00:00"
-        $this->assertEquals(date('d-m', $tiempo->time()), "01-02");
+        $this->assertEquals(date('d-m', $tiempo->time()), "02-01");
 
         $colectivo1->pagarCon($tarjeta);
 		$saldoEsperado=$saldoEsperado-32.50;
@@ -208,7 +208,7 @@ class TarjetaTest extends TestCase
         $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/02/1970 00:00:00"
         $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/03/1970 00:00:00"
 
-        $this->assertEquals(date('d-m', $tiempo->time()), "01-03");	//El 03/01/1970 cae un sabado
+        $this->assertEquals(date('d-m', $tiempo->time()), "03-01");	//El 03/01/1970 cae un sabado
         $this->assertEquals(date('N', $tiempo->time()), 6);
 
         $colectivo1->pagarCon($tarjeta);
@@ -231,7 +231,7 @@ class TarjetaTest extends TestCase
         $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/02/1970 00:00:00"
         $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/03/1970 00:00:00"
         $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/04/1970 00:00:00"
-        $this->assertEquals(date('d-m', $tiempo->time()), "01-03");	//El 04/01/1970 cae un domingo
+        $this->assertEquals(date('d-m', $tiempo->time()), "03-01");	//El 04/01/1970 cae un domingo
         $this->assertEquals(date('N', $tiempo->time()), 7);
 
         $colectivo1->pagarCon($tarjeta);
@@ -270,7 +270,7 @@ class TarjetaTest extends TestCase
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 
         $colectivo3->pagarCon($tarjeta);
-		$saldoEsperado=$saldoEsperado-(32.50*0);
+		$saldoEsperado=$saldoEsperado-(32.50);
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
     }
 
