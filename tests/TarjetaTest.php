@@ -231,7 +231,7 @@ class TarjetaTest extends TestCase
         $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/02/1970 00:00:00"
         $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/03/1970 00:00:00"
         $tiempo->avanzar(86400);	//Avanzar 1 dia	//"01/04/1970 00:00:00"
-        $this->assertEquals(date('d-m', $tiempo->time()), "03-01");	//El 04/01/1970 cae un domingo
+        $this->assertEquals(date('d-m', $tiempo->time()), "04-01");	//El 04/01/1970 cae un domingo
         $this->assertEquals(date('N', $tiempo->time()), 7);
 
         $colectivo1->pagarCon($tarjeta);
