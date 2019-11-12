@@ -150,6 +150,7 @@ class MedioUniTest extends TestCase
      */
     public function testTrasbordoUni()
     {
+    {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
         $tarjeta = new MedioUniversitario(0, $tiempo,$recargable);
@@ -159,7 +160,6 @@ class MedioUniTest extends TestCase
 		$saldoEsperado =200;
         $colectivo1 = new Colectivo(122, "Semtur", 37);
         $colectivo2 = new Colectivo(134, "RosarioBus", 52);
-
         $colectivo1->pagarCon($tarjeta);
 		$saldoEsperado=$saldoEsperado-(32.50/2);
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);	//Paga completo
@@ -173,7 +173,7 @@ class MedioUniTest extends TestCase
 
         $tiempo->avanzar(38100);
         $colectivo1->pagarCon($tarjeta);								//Paga completo
-		$saldoEsperado=$saldoEsperado-(32.50/2);
+		$saldoEsperado=$saldoEsperado-(32.50);
         $this->assertEquals(date('d-m', $tiempo->time()), "01-01");
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 		
