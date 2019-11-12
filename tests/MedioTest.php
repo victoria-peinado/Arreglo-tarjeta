@@ -140,7 +140,7 @@ class MedioTest extends TestCase
 
         $tiempo->avanzar(4200);
 		$saldoEsperado=$saldoEsperado-((32.50/2)*0.33);
-		$stringEsperado="Trasbordo Medio " . $saldoEsperado;
+		$stringEsperado="Trasbordo Medio " . ((32.50/2)*0.33);
         $boleto2 = $colectivo2->pagarCon($tarjeta);
         $this->assertEquals($boleto2->obtenerDescripcion(), $stringEsperado);
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
