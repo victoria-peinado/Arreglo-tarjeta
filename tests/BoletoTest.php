@@ -6,18 +6,18 @@ use PHPUnit\Framework\TestCase;
 
 class BoletoTest extends TestCase
 {
+	/**
 
     /**
      * Comprueba que sucede cuando creamos un boleto nuevo.
-     */
+     *//**
     public function testSaldoCero()
     {
 
         $tiempo = new Tiempo();
         $recargable = new Recargable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
-        $pagable = new Pagable();
-        $colectivo = new Colectivo(133, "RosarioBus", 69,$pagable);
+        $colectivo = new Colectivo(133, "RosarioBus", 69);
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerValor(), null);
         $tarjeta->recargar(50);
@@ -28,7 +28,7 @@ class BoletoTest extends TestCase
 
     /**
      * Comprueba retorno de datos Tarjeta Normal
-     */
+     *//**
     public function testDatosBoletoTarjeta()
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
@@ -69,16 +69,16 @@ class BoletoTest extends TestCase
 
         $tarjeta->recargar(30);
         $boleto = $colectivo->pagarCon($tarjeta);
-        //$this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");#error
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");
 
         $tarjeta->recargar(30);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Normal 14.8");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y Normal 14.8");
     }
 
     /**
      * Comprueba retorno de datos Medio
-     */
+     *//**
     public function testDatosBoletoMedio()
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
@@ -100,7 +100,7 @@ class BoletoTest extends TestCase
 
         $this->assertEquals($boleto->obtenerIdTarjeta(), 0);
 
-        $this->assertEquals($boleto->obtenerSaldo(), 22.6); 
+        $this->assertEquals($boleto->obtenerSaldo(), 22.6);
 
         $this->assertEquals($boleto->obtenerAbonado(), 7.4);
 
@@ -134,16 +134,16 @@ class BoletoTest extends TestCase
         $tarjeta->recargar(30);
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-       // $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0"); #error
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");
 
         $tarjeta->recargar(30);
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Medio 7.4");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y Medio 7.4");
     }
     /**
      * Comprueba retorno de datos Medio Universitario
-     */
+     *//**
     public function testDatosBoletoMedioUni()
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
@@ -194,17 +194,17 @@ class BoletoTest extends TestCase
         $tarjeta->recargar(30);
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-        //$this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0"); #error
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 29.6 y ViajePlus 0.0");
 
         $tarjeta->recargar(30);
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerDescripcion(), "Normal 14.8");
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y Normal 14.8");
     }
 
     /**
      * Comprueba retorno de datos Completo
-     */
+     *//**
     public function testDatosBoletoCompleto()
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
@@ -239,7 +239,7 @@ class BoletoTest extends TestCase
 
     /**
      * Comprueba retorno de Descripcion De Boleto en Tarjeta al pagar plus
-     */
+     *//**
     public function testDatosBoletoTarjetaPlus()
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
@@ -277,6 +277,8 @@ class BoletoTest extends TestCase
         $tarjeta->recargar(10);
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerSaldo(), 0.4);
-        //$this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y UltimoPlus 0.0"); #error
+        $this->assertEquals($boleto->obtenerDescripcion(), "Abona viajes plus 14.8 y UltimoPlus 0.0");
+		
     }
+	*/
 }

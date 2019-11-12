@@ -1,14 +1,26 @@
 <?php
 namespace TrabajoTarjeta;
 
-class Trasbordable
+class Trasbordable extends Pagable
 { 
     
     
     
     protected $Ultimotrasbordo = 1;
     
- 
+    /**
+     * Para el caso de la tarjeta ejecuta una funcion que se fija si puede hacer trasbordo.
+     *
+     * @param string $linea
+     *   La linea de colectivo en la que se esta pagando, se utiliza para ver si hizo trasbordo.
+     *
+     * @return float
+     *   El valor del pasaje a pagar.
+     */
+     protected function calculaValor($linea)
+     {
+         return ($this->puedeTrasbordo($linea, $this->ValorBoleto));
+     }
  
      /**
       * Funcion para ver si dispone del trasbordo.
@@ -31,12 +43,12 @@ class Trasbordable
          if ($this->dependeHora()) {
              if (($this->tiempo->time() - $this->UltimaHora) < 3600) {
                  $this->Ultimotrasbordo = 1;
-                 return ($ValorBoleto * 0.33);
+                 return ($ValorBoleto * 0.33);	//Gratuito 
              }
          } else {
              if (($this->tiempo->time() - $this->UltimaHora) < 5400) {
                  $this->Ultimotrasbordo = 1;
-                 return ($ValorBoleto * 0.33);
+                 return ($ValorBoleto * 0.33);	//Gratuito 
              }
          }
          $this->Ultimotrasbordo = 0;
@@ -47,7 +59,7 @@ class Trasbordable
       * Dependiendo de la hora y el dia que sea puede haber un maximo de tiempo de 60 o 90 minutos.
       *
       * @return bool
-      *   True si son 60 o false si son 90.
+      *   True si son 60 o false si son 120.
       */
      protected function dependeHora()
      {

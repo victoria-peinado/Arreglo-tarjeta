@@ -6,7 +6,7 @@ Tarjeta completo
 /*/
 class Completo extends Tarjeta 
 {
-    public $ValorBoleto = 0; //El boleto vale 0// ANTES ERA PROTECTED
+    protected $ValorBoleto = 0; //El boleto vale 0
 
     /**
      * Devuelve el valor de boleto siendo este 0 para la franquicia completa.
@@ -17,7 +17,7 @@ class Completo extends Tarjeta
      * @return int
      *   El valor del boleto.
      */
-    public function calculaValor($linea)
+    protected function calculaValor($linea)
     {
         return $this->ValorBoleto; //Devuelve el valor ya almacenado
     }
