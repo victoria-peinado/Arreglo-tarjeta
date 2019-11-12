@@ -14,20 +14,32 @@ class MedioUniTest extends TestCase
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
         $medio = new MedioUniversitario(0, $tiempo,$recargable);
+		$saldoEsperado =0;
+
         $this->assertTrue($medio->recargar(100));
+		$saldoEsperado =$saldoEsperado+100;
         $this->assertEquals($medio->obtenerSaldo(), 100);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 92.6);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+
+        $this->assertEquals($medio->restarSaldo("153"), true);	//Paga 1 medio
+		$saldoEsperado =$saldoEsperado-(32.50/2);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
+
+        $this->assertEquals($medio->restarSaldo("153"), false);	//No puede pagar boleto porque no pasaron 5 minutos
         $tiempo->avanzar(50);
         $this->assertEquals($medio->restarSaldo("153"), false);
+
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 85.2);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($medio->restarSaldo("153"), true);	//Gasta el 2do medio
+		$saldoEsperado =$saldoEsperado-(32.50/2);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
+
+        $this->assertEquals($medio->restarSaldo("153"), false);	//No puede pagar boleto porque no pasaron 5 minutos
+
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 70.4);
+        $this->assertEquals($medio->restarSaldo("153"), true);	//Paga boleto comun
+		$saldoEsperado =$saldoEsperado-(32.50);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
+		/*	INSERVIBLE
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->obtenerSaldo(), 55.60);
@@ -50,6 +62,7 @@ class MedioUniTest extends TestCase
         $this->assertEquals($medio->restarSaldo("153"), false);
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), false);
+		*/
 
     }
 
@@ -61,7 +74,9 @@ class MedioUniTest extends TestCase
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
         $medio = new MedioUniversitario(0, $tiempo,$recargable);
-        $this->assertTrue($medio->recargar(962.59));
+
+        $this->assertTrue($medio->recargar(1119.90));	//Carga 1300.00
+
         $this->assertEquals($medio->restarSaldo("153"), true);
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);
@@ -92,25 +107,42 @@ class MedioUniTest extends TestCase
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
         $medio = new MedioUniversitario(0, $tiempo,$recargable);
+		$saldoEsperado =0;
+
         $this->assertTrue($medio->recargar(100));
+        $this->assertTrue($medio->recargar(100));
+        $this->assertTrue($medio->recargar(100));
+		$saldoEsperado=300;
+
         $tiempo->avanzar(27000);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 92.6);
+        $this->assertEquals($medio->restarSaldo("153"), true);//Paga 1er medio
+		$saldoEsperado =$saldoEsperado-(32.50/2);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
+
         $tiempo->avanzar(18000);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 85.2);
+        $this->assertEquals($medio->restarSaldo("153"), true);//Paga 2do medio
+		$saldoEsperado =$saldoEsperado-(32.50/2);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
+
         $tiempo->avanzar(20000);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 70.4);
+        $this->assertEquals($medio->restarSaldo("153"), true);//Paga completo
+		$saldoEsperado =$saldoEsperado-(32.50);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
+
         $tiempo->avanzar(21500);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 63.0);
+        $this->assertEquals($medio->restarSaldo("153"), true);//Paga 1er medio
+		$saldoEsperado =$saldoEsperado-(32.50/2);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
+
         $tiempo->avanzar(1500);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 55.6);
+        $this->assertEquals($medio->restarSaldo("153"), true);//Paga 2do medio
+		$saldoEsperado =$saldoEsperado-(32.50/2);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
+
         $tiempo->avanzar(10000);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->obtenerSaldo(), 40.8);
+        $this->assertEquals($medio->restarSaldo("153"), true);//Paga completo
+		$saldoEsperado =$saldoEsperado-(32.50);
+        $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
     }
 
     /*
@@ -124,23 +156,32 @@ class MedioUniTest extends TestCase
         $tiempo->avanzar(42300);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
+		$saldoEsperado =200;
         $colectivo1 = new Colectivo(122, "Semtur", 37);
         $colectivo2 = new Colectivo(134, "RosarioBus", 52);
 
         $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 192.6);
+		$saldoEsperado=$saldoEsperado-(32.50/2);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);	//Paga completo
+
         $tiempo->avanzar(4200);
-        $boleto2 = $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($boleto2->obtenerDescripcion(), "Trasbordo Medio 2.442");
-        $this->assertEquals($tarjeta->obtenerSaldo(), 190.158);
+        $boleto2 = $colectivo2->pagarCon($tarjeta);						//Paga medio transbordo
+		$saldoEsperado=$saldoEsperado-((32.50/2)*0.33);
+		$stringEsperado="Trasbordo Medio".((32.50/2)*0.33);
+        $this->assertEquals($boleto2->obtenerDescripcion(), $stringEsperado);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 
         $tiempo->avanzar(38100);
-        $colectivo1->pagarCon($tarjeta);
+        $colectivo1->pagarCon($tarjeta);								//Paga completo
+		$saldoEsperado=$saldoEsperado-(32.50/2);
         $this->assertEquals(date('d-m', $tiempo->time()), "01-01");
-        $this->assertEquals($tarjeta->obtenerSaldo(), 175.358);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
+		
         $tiempo->avanzar(3500);
-        $boleto2 = $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($boleto2->obtenerDescripcion(), "Trasbordo Medio 2.442");
-        $this->assertEquals($tarjeta->obtenerSaldo(), 172.916);
+        $boleto2 = $colectivo2->pagarCon($tarjeta);						//Paga medio transbordo
+		$saldoEsperado=$saldoEsperado-((32.50/2)*0.33);
+		$stringEsperado="Trasbordo Medio".((32.50/2)*0.33);
+        $this->assertEquals($boleto2->obtenerDescripcion(), $stringEsperado);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
     }
 }
