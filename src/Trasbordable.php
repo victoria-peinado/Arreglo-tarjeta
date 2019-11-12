@@ -43,12 +43,12 @@ class Trasbordable extends Pagable
          if ($this->dependeHora()) {
              if (($this->tiempo->time() - $this->UltimaHora) < 3600) {
                  $this->Ultimotrasbordo = 1;
-                 return ($ValorBoleto * 0.33);	//Gratuito 
+                 return ($ValorBoleto * 0);	//Gratuito 
              }
          } else {
-             if (($this->tiempo->time() - $this->UltimaHora) < 5400) {
+             if (($this->tiempo->time() - $this->UltimaHora) < 7200) {
                  $this->Ultimotrasbordo = 1;
-                 return ($ValorBoleto * 0.33);	//Gratuito 
+                 return ($ValorBoleto * 0);	//Gratuito 
              }
          }
          $this->Ultimotrasbordo = 0;
@@ -63,17 +63,17 @@ class Trasbordable extends Pagable
       */
      protected function dependeHora()
      {
-         if ($this->tiempo->esFeriado() || date('N', $this->tiempo->time()) == 7){
+         if ($this->tiempo->esFeriado() || date('N', $this->tiempo->time()) == 7){	//Si es un domingo, el transbordo es de 2 hora
              return false;
          }
          if (date('N', $this->tiempo->time()) == 6){
-             if (date('G', $this->tiempo->time()) > 6 && date('G', $this->tiempo->time()) < 14){
+             if (date('G', $this->tiempo->time()) > 6 && date('G', $this->tiempo->time()) < 14){	//Si es un sabado entre las 6 y las 14 el transbordo es de 2 horas
                  return true;
              } else {
                  return false;
              }
          } else {
-             if (date('G', $this->tiempo->time()) > 6 && date('G', $this->tiempo->time()) < 22){
+             if (date('G', $this->tiempo->time()) > 6 && date('G', $this->tiempo->time()) < 20){	//Durante el resto de los dias, si es entre las 6 y las 20 el transbordo es de 2 horas
                  return true;
              } else {
                  return false;
