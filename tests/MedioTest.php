@@ -32,12 +32,12 @@ class MedioTest extends TestCase
         $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
 
         $this->assertEquals($medio->restarSaldo("153"), true);//Medio Comun
-		$saldoEsperado=$saldoEsperado-($medio->ValorBoleto /2);
+		$saldoEsperado=$saldoEsperado-(32.50 /2);
         $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
 
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);//Comprueba que avanzar 5 minutos permite usar un medio
-		$saldoEsperado=$saldoEsperado-(($medio->ValorBoleto /2));
+		$saldoEsperado=$saldoEsperado-((32.50 /2));
         $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
 		
         $tiempo = new TiempoFalso;
@@ -88,7 +88,7 @@ class MedioTest extends TestCase
 
         $tiempo->avanzar(300);
         $this->assertEquals($medio->restarSaldo("153"), true);
-		$saldoEsperado =$saldoEsperado-($medio->ValorBoleto/2);
+		$saldoEsperado =$saldoEsperado-(32.50/2);
 
         $tiempo->avanzar(50);
         $this->assertEquals($medio->restarSaldo("153"), false);
@@ -103,7 +103,7 @@ class MedioTest extends TestCase
 
         $tiempo->avanzar(50);
         $this->assertEquals($medio->restarSaldo("153"), true);
-		$saldoEsperado=$saldoEsperado-($medio->ValorBoleto/2);
+		$saldoEsperado=$saldoEsperado-(32.50/2);
 
         $tiempo->avanzar(265);
         $this->assertEquals($medio->restarSaldo("153"), false);
@@ -131,7 +131,7 @@ class MedioTest extends TestCase
         Pruebo pagar un trasbordo un dia feriado con 90 minutos de espera y el texto del boleto
          */
         $boleto = $colectivo1->pagarCon($tarjeta);
-		$saldoEsperado=$saldoEsperado-($medio->ValorBoleto/2);
+		$saldoEsperado=$saldoEsperado-(32.50/2);
         $this->assertEquals(date('N', $tiempo->time()), '4');
         $this->assertEquals(date('G', $tiempo->time()), '8');
         $this->assertEquals(date('d-m', $tiempo->time()), "01-01");
@@ -139,7 +139,7 @@ class MedioTest extends TestCase
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 
         $tiempo->avanzar(4200);
-		$saldoEsperado=$saldoEsperado-(($medio->ValorBoleto/2)*0.33);
+		$saldoEsperado=$saldoEsperado-((32.50/2)*0.33);
 		$stringEsperado="Trasbordo Medio " . $$saldoEsperado;
         $boleto2 = $colectivo2->pagarCon($tarjeta);
         $this->assertEquals($boleto2->obtenerDescripcion(), $stringEsperado);
