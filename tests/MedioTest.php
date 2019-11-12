@@ -28,7 +28,7 @@ class MedioTest extends TestCase
         $medio = new Medio(0, $tiempo,$recargable);
 		$saldoEsperado =0;
         $this->assertTrue($medio->recargar(100));//Prueba si carga
-		$saldoEsperado=$saldoEsperado+100
+		$saldoEsperado=$saldoEsperado+100;
         $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);
 
         $this->assertEquals($medio->restarSaldo("153"), true);//Medio Comun
