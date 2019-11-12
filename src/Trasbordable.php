@@ -46,7 +46,7 @@ class Trasbordable extends Pagable
                  return ($ValorBoleto * 0);	//Gratuito 
              }
          } else {
-             if (($this->tiempo->time() - $this->UltimaHora) < 7200) {
+             if (($this->tiempo->time() - $this->UltimaHora) < 5400) {
                  $this->Ultimotrasbordo = 1;
                  return ($ValorBoleto * 0);	//Gratuito 
              }
