@@ -3,7 +3,7 @@ namespace TrabajoTarjeta;
 
 class Pagable
 { 
-    protected $ValorBoleto = 14.8;
+    protected $ValorBoleto = 32.50;//14.8;
     protected $plus = 0;
     protected $pagoplus = 0;
     protected $tiempo;
