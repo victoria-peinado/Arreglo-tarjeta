@@ -165,7 +165,7 @@ class TarjetaTest extends TestCase
 		$saldoEsperado =200;
 		
         $tiempo->avanzar(86400);	//Avanzar 1 dia //"01/02/1970 00:00:00"
-        $this->assertEquals(date('d-m', $tiempo->time()), "01-02");
+        $this->assertEquals(date('d-m', $tiempo->time()), "02-01");
 
         $colectivo1->pagarCon($tarjeta);
 		$saldoEsperado=$saldoEsperado-32.50;
@@ -291,12 +291,12 @@ class TarjetaTest extends TestCase
         $colectivo2 = new Colectivo(134, "RosarioBus", 52);
 
         $colectivo1->pagarCon($tarjeta);
-		$saldoEsperado=$saldoEsperado-32.50;
-        $this->assertEquals($tarjeta->obtenerSaldo(), 167.5);
+		$saldoEsperado=$saldoEsperado-(32.50*0);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 
         $colectivo2->pagarCon($tarjeta);
 		$saldoEsperado=$saldoEsperado-(32.50*0);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 156.775);
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 
     }
 }
