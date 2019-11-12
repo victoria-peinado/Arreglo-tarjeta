@@ -167,7 +167,7 @@ class MedioUniTest extends TestCase
         $tiempo->avanzar(4200);
         $boleto2 = $colectivo2->pagarCon($tarjeta);						//Paga medio transbordo
 		$saldoEsperado=$saldoEsperado-((32.50/2)*0.33);
-		$stringEsperado="Trasbordo Medio".((32.50/2)*0.33);
+		$stringEsperado="Trasbordo Medio ".((32.50/2)*0.33);
         $this->assertEquals($boleto2->obtenerDescripcion(), $stringEsperado);
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
 

@@ -16,6 +16,7 @@ class ColectivoTest extends TestCase
         $recargable = new Recargable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tarjeta->recargar(100);
+		$saldoEsperado =100;
         $colectivo = new Colectivo(122, "Semtur", 37);
         /*
         Probamos la asignacion de parametros iniciales
@@ -27,7 +28,8 @@ class ColectivoTest extends TestCase
         Probamos la realizacion de una viaje
          */
         $this->assertEquals($colectivo->pagarCon($tarjeta), new Boleto($colectivo, $tarjeta));
-        $this->assertEquals($tarjeta->obtenerSaldo(), 67.5);
+		$saldoEsperado =$saldoEsperado-32.50;
+        $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
     }
 
     /**

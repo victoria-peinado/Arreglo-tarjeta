@@ -14,7 +14,7 @@ class CompletoTest extends TestCase
         $tiempo = new Tiempo;
         $recargable = new Recargable();
         $completo = new Completo(0, $tiempo,$recargable);
-        for (($i = 0); $i < 160; ++$i) {
+        for (($i = 0); $i < 5; ++$i) {
             $this->assertEquals($completo->restarSaldo("153"), true);
         }
         $this->assertEquals($completo->restarSaldo("153"), true);
