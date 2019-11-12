@@ -52,7 +52,7 @@ class BoletoTest extends TestCase
 
         $tarjeta->recargar(100);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerSaldo(), 37.5);
+        $this->assertEquals($boleto->obtenerSaldo(), 5);
     }
 
     /**
@@ -76,7 +76,7 @@ class BoletoTest extends TestCase
 
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerSaldo(), 51);
+        $this->assertEquals($boleto->obtenerSaldo(), 51.25);
         
         $boleto = $colectivo->pagarCon($tarjeta);// caso de que no pasaron 5 minutos
         $this->assertEquals($boleto, False);
@@ -105,7 +105,7 @@ class BoletoTest extends TestCase
 
         $tiempo->avanzar(300);
         $boleto = $colectivo->pagarCon($tarjeta);
-        $this->assertEquals($boleto->obtenerSaldo(), 34.5);//usa saldo normal porque ya uso sus dos medios
+        $this->assertEquals($boleto->obtenerSaldo(), 35);//usa saldo normal porque ya uso sus dos medios
         
         $boleto = $colectivo->pagarCon($tarjeta);// caso de que no pasaron 5 minutos
         $this->assertEquals($boleto, False);
