@@ -15,7 +15,6 @@ class Colectivo implements ColectivoInterface
         $this->linea = $linea; //asignacion de los parametros
         $this->empresa = $empresa;
         $this->numero = $numero;
-        $this->pagable = new Pagable();
     }
 
     /**
@@ -59,7 +58,7 @@ class Colectivo implements ColectivoInterface
      */
     public function pagarCon(TarjetaInterface $tarjeta)
     {
-        if (!($this->pagable->PrestarSaldo(($this->linea),$tarjeta))) { //Si la funcion para restar el saldo retorna false
+        if (!($tarjeta->restarSaldo($this->linea))) { //Si la funcion para restar el saldo retorna false
             return false; //Falla el pago
         }
         return (new Boleto($this, $tarjeta)); //Crea un boleto con la informacion

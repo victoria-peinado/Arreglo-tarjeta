@@ -39,11 +39,11 @@ class Recargable
             case 100:
                 $monto= 100;
                 break;
-            case 510.15:
-                $monto= 592.08;
+            case 1119.90://510.15:
+                $monto= 1300.00;//592.08;
                 break;
-            case 962.59:
-                $monto= 1184.17;
+            case 2114.11://962.59:
+                $monto= 2600.00;//1184.17;
                 break;
             default:
                 //Devuelve false si el monto ingresado no es válido
