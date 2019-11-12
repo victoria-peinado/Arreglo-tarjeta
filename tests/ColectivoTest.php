@@ -38,7 +38,8 @@ class ColectivoTest extends TestCase
 
         $tiempo = new Tiempo;
         $recargable = new Recargable();
-        $tarjeta = new Tarjeta(0, $tiempo,$recargable);
+        $pagable = new Pagable();
+        $tarjeta = new Tarjeta(0, $tiempo,$recargable,$pagable);
         $colectivo = new Colectivo(141, "Semtur", 37);
         /*
         Probamos la realizacion de una viaje sin saldo

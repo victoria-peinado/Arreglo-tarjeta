@@ -15,7 +15,7 @@ class MedioUniversitario extends Medio
      * @return float
      *   El valor del boleto a pagar.
      */
-    protected function calculaValor($linea)
+    public function calculaValor($linea)
     {
         $BoletoTemporal = 0;
         $UltimaFecha = date("d/m/y", $this->UltimaHora); //Guarda Cuando fue la ultima utilizacion del boleto
