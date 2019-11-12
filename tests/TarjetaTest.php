@@ -199,11 +199,11 @@ class TarjetaTest extends TestCase
         $colectivo2 = new Colectivo(134, "RosarioBus", 52);
         $colectivo3 = new Colectivo(155, "RosarioBus", 33);
         $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 185.2);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 167.5);
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 180.316);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 156.775);
         $colectivo3->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 165.516);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 124.275);
     }
 
     /*
@@ -221,9 +221,9 @@ class TarjetaTest extends TestCase
         $colectivo1 = new Colectivo(122, "Semtur", 37);
         $colectivo2 = new Colectivo(134, "RosarioBus", 52);
         $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 185.2);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 167.5);
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 180.316);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 156.775);
 
     }
 }
