@@ -4,7 +4,10 @@ namespace TrabajoTarjeta;
 
 class Boleto implements BoletoInterface
 {
+
+
     protected $saldo; //Saldo restante
+
 
     public function __construct($tarjeta)
     {
