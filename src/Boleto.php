@@ -9,7 +9,7 @@ class Boleto implements BoletoInterface
     protected $saldo; //Saldo restante
 
 
-    public function __construct($colectivo,$tarjeta)
+    public function __construct($tarjeta)
     {
         $this->saldo = $tarjeta->obtenerSaldo();
     }
