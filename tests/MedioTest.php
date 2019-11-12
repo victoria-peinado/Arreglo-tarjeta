@@ -60,7 +60,7 @@ class MedioTest extends TestCase
         $this->assertEquals($medio->restarSaldo("153"), false);	//Comprueba que sin avanzar 5 minutos no se puede realizar otro pago de boleto
         $tiempo->avanzar(300);
 
-        for (($i = 0); $i < 155; ++$i) {
+        for (($i = 0); $i < 10; ++$i) {
             $this->assertEquals($medio->restarSaldo("153"), true);
             $tiempo->avanzar(300);
         }
@@ -140,9 +140,9 @@ class MedioTest extends TestCase
 
         $tiempo->avanzar(4200);
 		$saldoEsperado=$saldoEsperado-((32.50/2)*0.33);
-		$stringEsperado="Trasbordo Medio " . $$saldoEsperado;
+		$stringEsperado="Trasbordo Medio " . $saldoEsperado;
         $boleto2 = $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($boleto2->obtenerDescripcion(), "Trasbordo Medio 5.3625");
+        $this->assertEquals($boleto2->obtenerDescripcion(), $stringEsperado);
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
     }
 }
