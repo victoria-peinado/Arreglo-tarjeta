@@ -25,6 +25,7 @@ class MedioTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $medio = new Medio(0, $tiempo,$recargable);
 		$saldoEsperado =0;
 
@@ -69,8 +70,8 @@ class MedioTest extends TestCase
         $this->assertEquals($medio->restarSaldo("153"), true);
         $this->assertEquals($medio->restarSaldo("153"), false);
         $tiempo->avanzar(300);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
     }
 
     /**
@@ -80,6 +81,7 @@ class MedioTest extends TestCase
     {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $medio = new Medio(0, $tiempo,$recargable);
 		$saldoEsperado =0;
 
@@ -92,13 +94,13 @@ class MedioTest extends TestCase
 		$saldoEsperado =$saldoEsperado-(32.50/2);
 
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(50);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(50);
         $this->assertEquals($medio->restarSaldo("153"), false);
 
@@ -107,10 +109,10 @@ class MedioTest extends TestCase
 		$saldoEsperado=$saldoEsperado-(32.50/2);
 
         $tiempo->avanzar(265);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
         $tiempo->avanzar(584);
-        $this->assertEquals($medio->restarSaldo("153"), true);
-        $this->assertEquals($medio->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$medio), false);
     }
 
     /*
@@ -120,6 +122,7 @@ class MedioTest extends TestCase
     {
         $tiempo = new TiempoFalso;//$tiempo = new TiempoFalso(0);
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Medio(0, $tiempo,$recargable);
         $tiempo->avanzar(28800);
         $tarjeta->recargar(100);

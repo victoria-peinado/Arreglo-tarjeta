@@ -37,7 +37,7 @@ class Boleto implements BoletoInterface
         $this->colectivo = $colectivo;
         $this->tarjeta = $tarjeta;
         $this->usoPlus = $tarjeta->usoPlus();
-        $this->cantplus = $tarjeta->obtenerPagoPlus();
+        $this->cantplus = $tarjeta->obtenerPagoPlus();//esto se deberia hacer despues de restar el saldo
         $this->hora = date("d/m/Y H:i:s", $tarjeta->ultimaHoraUsada());
         $this->idtarjeta = $tarjeta->obtenerId();
         $this->boletoCompleto = $tarjeta->boletoCompleto();

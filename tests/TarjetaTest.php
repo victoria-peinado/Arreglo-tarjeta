@@ -14,6 +14,7 @@ class TarjetaTest extends TestCase
     {
         $tiempo = new Tiempo();
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
 
         $this->assertTrue($tarjeta->recargar(10));
@@ -45,6 +46,7 @@ class TarjetaTest extends TestCase
     {
         $tiempo = new Tiempo();
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
 
         $this->assertFalse($tarjeta->recargar(15));
@@ -57,6 +59,7 @@ class TarjetaTest extends TestCase
     {
         $tiempo = new Tiempo();
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
 
         $this->assertTrue($tarjeta->recargar(50));
@@ -65,9 +68,9 @@ class TarjetaTest extends TestCase
         $this->assertEquals($tarjeta->restarSaldo("153"), true);
         $this->assertEquals($tarjeta->obtenerSaldo(), 17.5);
 
-        $this->assertEquals($tarjeta->restarSaldo("153"), true);
-        $this->assertEquals($tarjeta->restarSaldo("153"), true);
-        $this->assertEquals($tarjeta->restarSaldo("153"), false);
+        $this->assertEquals($pagable->PrestarSaldo("153",$tarjeta), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$tarjeta), true);
+        $this->assertEquals($pagable->PrestarSaldo("153",$tarjeta), false);
     }
 
     /*
@@ -77,6 +80,7 @@ class TarjetaTest extends TestCase
     {
         $tiempo = new Tiempo;
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
 
         $this->assertTrue($tarjeta->recargar(50));//saldo 20
@@ -99,6 +103,7 @@ class TarjetaTest extends TestCase
         $tiempo = new TiempoFalso(0);
         $tiempo->agregarFeriado("01-06");
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tiempo->avanzar(28800);
         $tarjeta->recargar(100);
@@ -192,6 +197,7 @@ class TarjetaTest extends TestCase
         $tiempo->agregarFeriado("01-01-18");
         $this->AssertFalse($tiempo->esFeriado());
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
@@ -215,6 +221,7 @@ class TarjetaTest extends TestCase
         $tiempo->agregarFeriado("01-01-18");
         $this->AssertFalse($tiempo->esFeriado());
         $recargable = new Recargable();
+        $pagable = new Pagable();
         $tarjeta = new Tarjeta(0, $tiempo,$recargable);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
