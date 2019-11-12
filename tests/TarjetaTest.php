@@ -171,16 +171,16 @@ class TarjetaTest extends TestCase
         $tiempo->avanzar(5200);
         $this->assertEquals(date('N', $tiempo->time()), 6);
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 88.55);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 110.325);
 
         //Prueba pagar trasbordo un domingo despues de los 60 minutos
         $tiempo->avanzar(57600);
         $colectivo1->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 56.05);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 77.825);
         $tiempo->avanzar(5200);
         $this->assertEquals(date('N', $tiempo->time()), 7);
         $colectivo2->pagarCon($tarjeta);
-        $this->assertEquals($tarjeta->obtenerSaldo(), 45.325);
+        $this->assertEquals($tarjeta->obtenerSaldo(), 67.1);
     }
 
     /*
