@@ -53,7 +53,7 @@ class MedioTest extends TestCase
         $this->assertEquals($medio->restarSaldo("153"), false);	//no puedo pagar el pasaje
 
         $this->assertTrue($medio->recargar(1119.90));			//recarga 1300.00
-		$saldoEsperado=$saldoEsperado+1300.00
+		$saldoEsperado=$saldoEsperado+1300.00;
 
         $this->assertEquals($medio->obtenerSaldo(), $saldoEsperado);	// no es 1159.77 porque no se resta el plus al recargar
         $this->assertEquals($medio->restarSaldo("153"), true);
