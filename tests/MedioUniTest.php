@@ -150,7 +150,6 @@ class MedioUniTest extends TestCase
      */
     public function testTrasbordoUni()
     {
-    {
         $tiempo = new TiempoFalso;
         $recargable = new Recargable();
         $tarjeta = new MedioUniversitario(0, $tiempo,$recargable);
