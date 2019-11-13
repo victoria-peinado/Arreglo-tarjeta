@@ -13,10 +13,16 @@ class Variables
       [1119.90, 1300],
       [2114.11, 2600]
       ];
+
    cons precioCompleto = 32.50;
-   cons precioMedioBoletoEstudiantil = 16.25;
-   cons precioBoletoUniversitario = 32.50;
-   cons precioMedioBoletoUniversitario = 16.25;
+   cons precioCompleto_Transbordo = 0;
+
+   cons precioMedioBoletoEstudiantil = (precioCompleto::cargasPosibles)/2;
+   cons precioMedioBoletoEstudiantil_Transbordo = 0;
+
+   cons precioMedioBoletoUniversitario = (precioCompleto::cargasPosibles)/2;
+   cons precioMedioBoletoUniversitario_Transbordo = 0;
    cons viajesUniversitariosPorDia = 2;
+
    cons precioLibre = 0;
 }
