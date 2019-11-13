@@ -3,7 +3,6 @@ namespace TrabajoTarjeta;
 
 class Recargable 
 {
-    
     //protected $saldo = 0;
     
        /**
@@ -18,38 +17,17 @@ class Recargable
      *   Si fue posible realizar la carga.
      */
     
-    public function Rrecargar($monto)
-    {
-        //$monto_tarjeta = $this->obtenerSaldo();
+	public function Rrecargar($monto)
+	{
+		$valoresDeRecarga=VariablesConstantes::cargasPosibles;
+		for ($ender=sizeof($valoresDeRecarga);$c<(ender-1);$c++) { //Diferentes montos a recargar
+			if($monto==$valoresDeRecarga[c][0]){
+				$monto= $valoresDeRecarga[c][1];
+				return $monto;
+			}
+		}
+		$monto = 0;
+		return $monto;
 
-        switch ($monto) { //Diferentes montos a recargar
-            case 10:
-                //$this->cambiarSaldo($monto_tarjeta + 10);
-                $monto= 10;
-                break;
-            case 20:
-                $monto= 20;
-                break;
-            case 30:
-                $monto= 30;
-                break;
-            case 50:
-                 $monto= 50;
-                break;
-            case 100:
-                $monto= 100;
-                break;
-            case 1119.90://510.15:
-                $monto= 1300.00;//592.08;
-                break;
-            case 2114.11://962.59:
-                $monto= 2600.00;//1184.17;
-                break;
-            default:
-                //Devuelve false si el monto ingresado no es válido
-                return 0;
-        }
-        return $monto;
-
-    }
+	}
 }
