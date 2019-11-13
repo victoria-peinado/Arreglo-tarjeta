@@ -52,8 +52,8 @@ class Colectivo implements ColectivoInterface
      *
      * @param TarjetaInterface $tarjeta
      *
-     * @return BoletoInterface|FALSE
-     *  El boleto generado por el pago del viaje. O FALSE si no hay saldo
+     * @return VisorInterface|FALSE
+     *  El saldo O FALSE si no hay saldo
      *  suficiente en la tarjeta.
      */
     public function pagarCon(TarjetaInterface $tarjeta)
@@ -61,6 +61,6 @@ class Colectivo implements ColectivoInterface
         if (!($tarjeta->restarSaldo($this->linea))) { //Si la funcion para restar el saldo retorna false
             return false; //Falla el pago
         }
-        return (new Boleto($tarjeta)); //Crea un boleto con la informacion
+        return (new Visor($tarjeta)); //Crea un boleto con la informacion
     }
 }
