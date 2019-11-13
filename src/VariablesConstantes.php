@@ -14,15 +14,15 @@ class Variables
       [2114.11, 2600]
       ];
 
-   cons precioCompleto = 32.50;
-   cons precioCompleto_Transbordo = 0;
+   const precioCompleto = 32.50;
+   const precioCompleto_Transbordo = 0;
 
-   cons precioMedioBoletoEstudiantil = (precioCompleto::cargasPosibles)/2;
-   cons precioMedioBoletoEstudiantil_Transbordo = 0;
+   const precioMedioBoletoEstudiantil = (precioCompleto::cargasPosibles)/2;
+   const precioMedioBoletoEstudiantil_Transbordo = 0;
 
-   cons precioMedioBoletoUniversitario = (precioCompleto::cargasPosibles)/2;
-   cons precioMedioBoletoUniversitario_Transbordo = 0;
-   cons viajesUniversitariosPorDia = 2;
+   const precioMedioBoletoUniversitario = (precioCompleto::cargasPosibles)/2;
+   const precioMedioBoletoUniversitario_Transbordo = 0;
+   const viajesUniversitariosPorDia = 2;
 
-   cons precioLibre = 0;
+   const precioLibre = 0;
 }
