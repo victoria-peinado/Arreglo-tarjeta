@@ -2,7 +2,7 @@
 
 namespace TrabajoTarjeta;
 
-class Boleto implements BoletoInterface
+class Visor implements VisorInterface
 {
 
 
