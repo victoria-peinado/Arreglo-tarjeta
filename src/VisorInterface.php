@@ -2,7 +2,7 @@
 
 namespace TrabajoTarjeta;
 
-interface BoletoInterface
+interface VisorInterface
 {
 
     /**
