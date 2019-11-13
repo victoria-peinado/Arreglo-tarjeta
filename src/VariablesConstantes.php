@@ -4,7 +4,7 @@ namespace TrabajoTarjeta;
 
 class VariablesConstantes
 {
-   $cargasPosibles = [
+   public $cargasPosibles = [
 		[10, 10],
 		[20, 20],
 		[30, 30],
@@ -14,15 +14,15 @@ class VariablesConstantes
 		[2114.11, 2600]
 	];
 
-   $precioCompleto = 32.50;
-   $precioCompleto_Transbordo = 0;
+	public $precioCompleto = 32.50;
+	public $precioCompleto_Transbordo = 0;
+	
+	public $precioMedioBoletoEstudiantil = ($precioCompleto)/2;
+	public $precioMedioBoletoEstudiantil_Transbordo = 0;
+	
+	public $precioMedioBoletoUniversitario = ($precioCompleto)/2;
+	public $precioMedioBoletoUniversitario_Transbordo = 0;
+	public $viajesUniversitariosPorDia = 2;
 
-   $precioMedioBoletoEstudiantil = ($precioCompleto)/2;
-   $precioMedioBoletoEstudiantil_Transbordo = 0;
-
-   $precioMedioBoletoUniversitario = ($precioCompleto)/2;
-   $precioMedioBoletoUniversitario_Transbordo = 0;
-   $viajesUniversitariosPorDia = 2;
-
-   $precioLibre = 0;
+	public  $precioLibre = 0;
 }

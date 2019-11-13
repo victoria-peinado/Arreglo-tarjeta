@@ -3,7 +3,7 @@ namespace TrabajoTarjeta;
 
 class Recargable 
 {
-	$constantes = new VariablesConstantes();
+	$constantes = new VariablesConstantes;
     //protected $saldo = 0;
     
        /**
