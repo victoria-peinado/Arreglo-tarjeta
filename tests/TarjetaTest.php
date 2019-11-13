@@ -111,7 +111,6 @@ class TarjetaTest extends TestCase
 		$saldoEsperado=$saldoEsperado-32.50;
         $this->assertEquals(date('G', $tiempo->time()), '0');
         $this->assertEquals(date('d-m', $tiempo->time()), "01-01");
-        $this->assertEquals($boleto->obtenerFecha(), "01/01/1970 00:00:00");
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
         $tiempo->avanzar(4200);	//"01/01/1970 01:10:00"
 

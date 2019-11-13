@@ -27,7 +27,7 @@ class ColectivoTest extends TestCase
         /*
         Probamos la realizacion de una viaje
          */
-        $this->assertEquals($colectivo->pagarCon($tarjeta), new Boleto($colectivo, $tarjeta));
+        $this->assertEquals($colectivo->pagarCon($tarjeta), new Boleto($tarjeta));
 		$saldoEsperado =$saldoEsperado-32.50;
         $this->assertEquals($tarjeta->obtenerSaldo(), $saldoEsperado);
     }
@@ -45,8 +45,8 @@ class ColectivoTest extends TestCase
         /*
         Probamos la realizacion de una viaje sin saldo
          */
-        $this->assertEquals($colectivo->pagarCon($tarjeta), new Boleto($colectivo, $tarjeta));
-        $this->assertEquals($colectivo->pagarCon($tarjeta), new Boleto($colectivo, $tarjeta));
+        $this->assertEquals($colectivo->pagarCon($tarjeta), new Boleto($tarjeta));
+        $this->assertEquals($colectivo->pagarCon($tarjeta), new Boleto($tarjeta));
         $this->assertEquals($colectivo->pagarCon($tarjeta), false);
     }
 }
