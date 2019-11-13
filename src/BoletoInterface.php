@@ -6,17 +6,10 @@ interface BoletoInterface
 {
 
     /**
-     * Devuelve el valor del boleto.
+     * Devuelve el saldo disponible en la tarjeta.
      *
      * @return int
      */
-    public function obtenerValor();
-
-    /**
-     * Devuelve un objeto que respresenta el colectivo donde se viajó.
-     *
-     * @return ColectivoInterface
-     */
-    public function obtenerColectivo();
+    public function obtenerSaldo();
 
 }
