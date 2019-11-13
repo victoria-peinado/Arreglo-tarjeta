@@ -3,6 +3,7 @@ namespace TrabajoTarjeta;
 
 class Recargable 
 {
+	constantes = new VariablesConstantes();
     //protected $saldo = 0;
     
        /**
@@ -19,10 +20,9 @@ class Recargable
     
 	public function Rrecargar($monto)
 	{
-		$valoresDeRecarga=VariablesConstantes::cargasPosibles;
-		for ($ender=sizeof($valoresDeRecarga);$c<(ender-1);$c++) { //Diferentes montos a recargar
-			if($monto==$valoresDeRecarga[c][0]){
-				$monto= $valoresDeRecarga[c][1];
+		foreach ($constantes->cargasPosibles as $valoresDeRecarga) { //Diferentes montos a recargar
+			if($monto==$valoresDeRecarga[0]){
+				$monto= $valoresDeRecarga[1];
 				return $monto;
 			}
 		}
