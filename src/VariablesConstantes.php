@@ -4,7 +4,7 @@ namespace TrabajoTarjeta;
 
 class Variables
 {
-   cons cargasPosibles = [
+   const cargasPosibles = [
       [10, 10],
       [20, 20],
       [30, 30],
