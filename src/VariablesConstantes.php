@@ -2,7 +2,7 @@
 
 namespace TrabajoTarjeta;
 
-class Variables
+class VariablesConstantes
 {
    const cargasPosibles = [
       [10, 10],
